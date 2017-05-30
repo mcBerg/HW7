@@ -1,12 +1,24 @@
 //
 //  AppDelegate.swift
-//  HW7
+//  GeoCalculator
 //
-//  Created by Student on 5/30/17.
-//  Copyright © 2017 Student. All rights reserved.
+//  Created by Jonathan Engelsma on 1/23/17.
+//  Copyright © 2017 Jonathan Engelsma. All rights reserved.
 //
 
 import UIKit
+
+let THEME_COLOR1 = UIColor.init(colorLiteralRed:0.000, green:0.157, blue:0.216,
+                                alpha:1.00)  // DARK BLUE
+let THEME_COLOR2 = UIColor.init(colorLiteralRed:0.000, green:0.369, blue:0.420,
+                                alpha:1.00) // Light Tan
+let THEME_COLOR3 = UIColor.init(colorLiteralRed: 0.937, green: 0.820, blue: 0.576,
+                                alpha: 1.0)  // Lighter Blue
+let THEME_COLOR4 = UIColor.init(colorLiteralRed:0.576, green:0.596, blue:0.329,
+                                alpha:1.00) // Greenish Tan
+let THEME_COLOR5 = UIColor.init(colorLiteralRed:0.251, green:0.286, blue:0.141,
+                                alpha:1.00) // Army Green
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // make the status bar more readable against darker background.
+        application.statusBarStyle = UIStatusBarStyle.lightContent
+        
+        let navAppearance = UINavigationBar.appearance()
+        navAppearance.barTintColor = THEME_COLOR2
+        navAppearance.tintColor = THEME_COLOR3
+        navAppearance.isTranslucent = false
+        navAppearance.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         return true
     }
 
