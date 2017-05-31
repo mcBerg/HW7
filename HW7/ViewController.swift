@@ -90,9 +90,7 @@ class ViewController: UIViewController {
         }
         if segue.identifier == "historySegue" {
             if let dest = segue.destination.childViewControllers[0] as? HistoryTableViewController {
-                print("Count \(self.entries.count)")
-                //dest.entries = self.entries
-                print("Count \(dest.entries.count)")
+                dest.entries = self.entries
             }
         }
     }

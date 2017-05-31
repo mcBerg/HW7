@@ -12,7 +12,7 @@ import UIKit
 
 class HistoryTableViewController: UITableViewController {
     
-    var entries : [LocationLookup] = []
+    var entries : [LocationLookup]? = []
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -21,20 +21,20 @@ class HistoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entries.count
+        if let count = entries?.count {
+            return count
+        } else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        
-        let entry=entries[indexPath.row]
-            
-        cell.detailTextLabel?.text = String(entry.destLat)
-        
-        cell.textLabel?.text = String(entry.destLng)
-        
+        if let entry=entries?[indexPath.row] {
+            cell.detailTextLabel?.text = String(entry.destLat)
+            cell.textLabel?.text = String(entry.destLng)
+        }
         return cell
-        
     }
     
 }
