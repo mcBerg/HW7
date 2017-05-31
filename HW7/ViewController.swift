@@ -89,7 +89,7 @@ class ViewController: UIViewController {
             }
         }
         if segue.identifier == "historySegue" {
-            if let dest = segue.destination.childViewControllers[0] as? HistoryTableViewController {
+            if let dest = segue.destination as? HistoryTableViewController {
                 dest.entries = self.entries
             }
         }
