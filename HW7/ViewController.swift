@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     
     var distanceUnits : String = "Kilometers"
     var bearingUnits : String = "Degrees"
+    var entries : [LocationLookup] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,8 @@ class ViewController: UIViewController {
         } else {
             self.bearingLabel.text = "Bearing: \((bearing * 1777.7777777778).rounded() / 100.0) mils."
         }
+        entries.append(LocationLookup(origLat: p1lt, origLng: p1ln, destLat: p2lt, destLng: p2ln, timestamp: Date()))
+        
     }
     
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
@@ -85,9 +88,15 @@ class ViewController: UIViewController {
                 dest.delegate = self
             }
         }
+        if segue.identifier == "historySegue" {
+            if let dest = segue.destination.childViewControllers[0] as? HistoryTableViewController {
+                print("Count \(self.entries.count)")
+                //dest.entries = self.entries
+                print("Count \(dest.entries.count)")
+            }
+        }
     }
 }
-
 extension ViewController : SettingsViewControllerDelegate
 {
     func settingsChanged(distanceUnits: String, bearingUnits: String)
